@@ -1,0 +1,7 @@
+[project]
+name = "fastapi-app"
+version = "0.1.0"
+description = "A production-ready FastAPI service."
+
+[tool.setuptools.packages.find]
+where = ["src"]

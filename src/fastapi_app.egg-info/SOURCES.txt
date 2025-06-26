@@ -1,0 +1,7 @@
+README.md
+pyproject.toml
+src/fastapi_app.egg-info/PKG-INFO
+src/fastapi_app.egg-info/SOURCES.txt
+src/fastapi_app.egg-info/dependency_links.txt
+src/fastapi_app.egg-info/top_level.txt
+tests/test_app.py

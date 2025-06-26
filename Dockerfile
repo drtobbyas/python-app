@@ -24,7 +24,7 @@ RUN addgroup --system app && adduser --system --group app
 COPY --from=builder /usr/local/lib/python3.9/site-packages /usr/local/lib/python3.9/site-packages
 
 # Copy the application code into the final image
-COPY app.py .
+COPY src ./src
 
 # Change the ownership of the application directory to the non-root user
 RUN chown -R app:app /app
@@ -36,4 +36,4 @@ USER app
 EXPOSE 8000
 
 # Define the command to run the application
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "src.app:app", "--host", "0.0.0.0", "--port", "8000"]
