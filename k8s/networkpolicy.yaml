@@ -12,7 +12,11 @@ spec:
   - from:
     # Allow traffic from pods in the same namespace with the label 'app=ingress-nginx'
     # This label should match your Ingress controller pods
-    - podSelector:
+    - namespaceSelector:
+        matchLabels:
+          # This label should match the namespace of your Ingress controller
+          kubernetes.io/metadata.name: ingress-nginx
+      podSelector:
         matchLabels:
           app.kubernetes.io/name: ingress-nginx
     ports:
