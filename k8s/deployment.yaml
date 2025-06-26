@@ -17,7 +17,7 @@ spec:
       serviceAccountName: fastapi-app-sa
       containers:
       - name: fastapi-app
-        image: fastapi-app:latest # This will be replaced by the CI/CD pipeline
+        image: DOCKER_IMAGE_PLACEHOLDER # This will be replaced by the deploy script
         ports:
         - containerPort: 8000
         resources:

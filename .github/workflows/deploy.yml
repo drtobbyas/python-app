@@ -64,4 +64,5 @@ jobs:
 
     - name: Deploy to Kubernetes
       run: |
-        kubectl set image deployment/fastapi-app fastapi-app=${{ secrets.DOCKERHUB_USERNAME }}/fastapi-app:${{ github.sha }}
+        chmod +x ./scripts/deploy.sh
+        ./scripts/deploy.sh ${{ secrets.DOCKERHUB_USERNAME }}/fastapi-app:${{ github.sha }}
