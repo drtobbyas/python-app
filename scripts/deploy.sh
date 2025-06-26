@@ -13,13 +13,13 @@ else
 fi
 
 echo "Applying base Kubernetes manifests (excluding deployment)..."
-# Substitute the placeholder in the deployment manifest
-sed "s|DOCKER_IMAGE_PLACEHOLDER|$FULL_IMAGE_NAME|g" k8s/deployment.yaml
+# Apply all manifests except the deployment itself, as it needs substitution.
+find k8s -type f ! -name 'deployment.yaml' -exec kubectl apply -f {} \;
+kubectl apply -f security/
 
 echo "Deploying application with image: $FULL_IMAGE_NAME"
-kubectl apply -f k8s/
-
-kubectl apply -f security/
+# Substitute the placeholder in the deployment manifest and apply it via stdin
+sed "s|DOCKER_IMAGE_PLACEHOLDER|$FULL_IMAGE_NAME|g" k8s/deployment.yaml | kubectl apply -f -
 
 echo "Waiting for deployment rollout to complete..."
 kubectl rollout status deployment/fastapi-app
