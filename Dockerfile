@@ -20,8 +20,9 @@ WORKDIR /app
 # Using a non-root user is a security best practice
 RUN addgroup --system app && adduser --system --group app
 
-# Copy the installed Python packages from the builder stage
+# Copy the installed Python packages and executables from the builder stage
 COPY --from=builder /usr/local/lib/python3.9/site-packages /usr/local/lib/python3.9/site-packages
+COPY --from=builder /usr/local/bin /usr/local/bin
 
 # Copy the application code into the final image
 COPY src ./src
