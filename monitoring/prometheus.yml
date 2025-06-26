@@ -6,8 +6,6 @@ rule_files:
 
 scrape_configs:
   - job_name: 'fastapi-app'
-    # This assumes Prometheus is running in the same Kubernetes cluster
-    # and can resolve the service name.
     static_configs:
       - targets: ['fastapi-app-service.default.svc.cluster.local:80']
     metrics_path: /metrics
