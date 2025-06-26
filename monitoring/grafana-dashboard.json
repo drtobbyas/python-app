@@ -1,0 +1,55 @@
+{
+  "__inputs": [],
+  "__requires": [],
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "datasource": "Prometheus",
+      "gridPos": { "h": 9, "w": 12, "x": 0, "y": 0 },
+      "id": 2,
+      "targets": [
+        {
+          "expr": "sum(rate(http_requests_total{job=\"fastapi-app\"}[5m]))",
+          "legendFormat": "Request Rate"
+        }
+      ],
+      "title": "Request Rate",
+      "type": "graph"
+    },
+    {
+      "datasource": "Prometheus",
+      "gridPos": { "h": 9, "w": 12, "x": 12, "y": 0 },
+      "id": 4,
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.95, sum(rate(http_requests_latency_seconds_bucket{job=\"fastapi-app\"}[5m])) by (le))",
+          "legendFormat": "95th Percentile Latency"
+        }
+      ],
+      "title": "P95 Request Latency",
+      "type": "graph"
+    }
+  ],
+  "schemaVersion": 27,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "FastAPI App Dashboard",
+  "uid": "fastapi-dashboard",
+  "version": 1
+}

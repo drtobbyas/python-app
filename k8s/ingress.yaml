@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: fastapi-app-ingress
+  annotations:
+    # This annotation is specific to NGINX Ingress Controller
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: fastapi-app.example.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: fastapi-app-service
+            port:
+              number: 80

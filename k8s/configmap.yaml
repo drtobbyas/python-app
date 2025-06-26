@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fastapi-app-config
+data:
+  LOG_LEVEL: "info"
+  FEATURE_FLAGS: "feature1,feature2"

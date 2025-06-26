@@ -1,0 +1,25 @@
+apiVersion: policy/v1beta1
+kind: PodSecurityPolicy
+metadata:
+  name: fastapi-app-psp
+  annotations:
+    seccomp.security.alpha.kubernetes.io/allowedProfileNames: 'runtime/default'
+    seccomp.security.alpha.kubernetes.io/defaultProfileName:  'runtime/default'
+    # NOTE: PodSecurityPolicy is deprecated in v1.21 and removed in v1.25.
+    # This manifest serves as a declaration of the intended security context.
+    # On modern clusters, use Pod Security Admission with the 'restricted' standard.
+spec:
+  privileged: false
+  runAsUser:
+    rule: 'MustRunAsNonRoot'
+  fsGroup:
+    rule: 'RunAsAny'
+  supplementalGroups:
+    rule: 'RunAsAny'
+  volumes:
+  - 'configMap'
+  - 'emptyDir'
+  - 'projected'
+  - 'secret'
+  - 'downwardAPI'
+  readOnlyRootFilesystem: true
